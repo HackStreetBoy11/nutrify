@@ -7,4 +7,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  // vite.config.js
+  server: {
+    proxy: {
+      '/api': 'http://localhost:5000',
+      '/socket.io': {
+        target: 'ws://localhost:5000',
+        ws: true
+      }
+    }
+  }
+
 })
+
