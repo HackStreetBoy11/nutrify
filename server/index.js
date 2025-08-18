@@ -11,15 +11,15 @@ import connectDb from './lib/db.js';
 import { app, server } from "./lib/socket.js"
 
 import foodRoutes from './routes/food.route.js';
-// import { sendDailyNutrientReports, startScheduler } from './scheduler.js';
+import { sendDailyNutrientReports, startScheduler } from './scheduler.js';
 
 dotenv.config();
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
-// sendDailyNutrientReports();
+sendDailyNutrientReports();
 
-// startScheduler();
+startScheduler();
 
 
 // ✅ CORS first
