@@ -11,20 +11,20 @@ import connectDb from './lib/db.js';
 import { app, server } from "./lib/socket.js"
 
 import foodRoutes from './routes/food.route.js';
-import { sendDailyNutrientReports, startScheduler } from './scheduler.js';
+// import { sendDailyNutrientReports, startScheduler } from './scheduler.js';
 
 dotenv.config();
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
-sendDailyNutrientReports();
+// sendDailyNutrientReports();
 
-startScheduler();
+// startScheduler();
 
 
 // ✅ CORS first
 app.use(cors({
-    origin: ["http://localhost:5173"], 
+    origin: ["http://localhost:5173"],
     credentials: true
 }));
 
@@ -41,8 +41,8 @@ if (process.env.NODE_ENV === "production") {
     // Serve static files from the React app
     app.use(express.static(path.join(__dirname, './frontend/dist')));
 
-    app.get("*",(req,res)=>{
-        res.sendFile(path.join(__dirname, './frontend/','dist','index.html'));
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, './frontend/', 'dist', 'index.html'));
     })
 
 }
