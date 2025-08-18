@@ -1,54 +1,58 @@
 import express from 'express';
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import cors from "cors";
-
+import cors from 'cors';
 import path from 'path';
 
 import authRoutes from './routes/auth.route.js';
 import messageRoutes from './routes/message.route.js';
-import connectDb from './lib/db.js';
-import { app, server } from "./lib/socket.js"
-
 import foodRoutes from './routes/food.route.js';
+import connectDb from './lib/db.js';
+import { app, server } from './lib/socket.js';
 import { sendDailyNutrientReports, startScheduler } from './scheduler.js';
 
 dotenv.config();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
-sendDailyNutrientReports();
+// ✅ Start scheduler safely
+try {
+    sendDailyNutrientReports();
+    startScheduler();
+} catch (err) {
+    console.error("Error starting scheduler:", err.message);
+}
 
-startScheduler();
-
-
-// ✅ CORS first
+// ✅ CORS
 app.use(cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173"], // your frontend origin
     credentials: true
 }));
 
-// ✅ JSON parsing + cookie parsing
+// ✅ JSON + cookie parser
 app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
 
-// ✅ Routes
+// ✅ API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/food", foodRoutes);
 
+// ✅ Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
-    // Serve static files from the React app
     app.use(express.static(path.join(__dirname, './frontend/dist')));
-
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, './frontend/', 'dist', 'index.html'));
-    })
-
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, './frontend/dist', 'index.html'));
+    });
 }
 
 // ✅ Start server
-server.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
-    connectDb();
+server.listen(PORT, async () => {
+    console.log(`Server running on port ${PORT}`);
+    try {
+        await connectDb();
+        console.log("Database connected");
+    } catch (err) {
+        console.error("Database connection error:", err.message);
+    }
 });
