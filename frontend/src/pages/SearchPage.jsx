@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import LeftSide from "./SearchPageSide.jsx/LeftSide";
 import RightSide from "./SearchPageSide.jsx/RightSide";
 import toast from "react-hot-toast";
+const API_BASE = import.meta.env.MODE === "development"
+    ? "http://localhost:5000/api"
+    : "/api";
 
 export default function SearchPage() {
     const [foodItems, setFoodItems] = useState([]);
@@ -32,7 +35,7 @@ export default function SearchPage() {
     }, []);
 
     function searchFood(e) {
-        const query = e.target.value; 
+        const query = e.target.value;
         if (query.length > 2) { // Start searching after 3 characters
             fetch(
                 `https://api.nal.usda.gov/fdc/v1/foods/search?query=${query}&api_key=eaXR8kjXm6roxkfIL5XCSLgtbvc1tdEa4SH9NNWT`
@@ -81,7 +84,7 @@ export default function SearchPage() {
         };
 
         try {
-            const res = await fetch("http://localhost:5000/api/food/track", {
+            const res = await fetch(`${API_BASE}/food/track`, {
                 method: "POST",
                 credentials: "include",
                 headers: {

@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+const API_BASE = import.meta.env.MODE === "development"
+    ? "http://localhost:5000/api"
+    : "/api";
 
 
 import TargetSettings from "../components/TargetSettings"; // import modal
@@ -40,7 +43,7 @@ export default function TrackPage() {
             setLoading(true);
             try {
                 const res = await fetch(
-                    `http://localhost:5000/api/food/tracked?date=${selectedDate}`,
+                    `${API_BASE}/food/tracked?date=${selectedDate}`,
                     {
                         method: "GET",
                         credentials: "include",

@@ -5,23 +5,23 @@ import cors from 'cors';
 import path from 'path';
 
 import authRoutes from './routes/auth.route.js';
-// import messageRoutes from './routes/message.route.js';
-// import foodRoutes from './routes/food.route.js';
+import messageRoutes from './routes/message.route.js';
+import foodRoutes from './routes/food.route.js';
 import connectDb from './lib/db.js';
 import { app, server } from './lib/socket.js';
-// import { sendDailyNutrientReports, startScheduler } from './scheduler.js';
+import { sendDailyNutrientReports, startScheduler } from './scheduler.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
 // ✅ Start scheduler safely
-// try {
-//     sendDailyNutrientReports();
-//     startScheduler();
-// } catch (err) {
-//     console.error("Error starting scheduler:", err.message);
-// }
+try {
+    sendDailyNutrientReports();
+    startScheduler();
+} catch (err) {
+    console.error("Error starting scheduler:", err.message);
+}
 
 // ✅ CORS
 app.use(cors({
@@ -35,8 +35,8 @@ app.use(cookieParser());
 
 // ✅ API Routes
 app.use("/api/auth", authRoutes);
-// app.use("/api/messages", messageRoutes);
-// app.use("/api/food", foodRoutes);
+app.use("/api/messages", messageRoutes);
+app.use("/api/food", foodRoutes);
 
 // ✅ Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
