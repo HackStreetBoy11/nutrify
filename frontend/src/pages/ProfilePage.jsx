@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Camera, Mail, User } from "lucide-react";
 import Image from '../avatar.png'
@@ -21,6 +21,8 @@ const ProfilePage = () => {
             setSelectedImg(base64Image);
             await updateProfile({ profilePic: base64Image });
         };
+
+
     };
 
     return (

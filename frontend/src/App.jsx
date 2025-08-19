@@ -10,7 +10,7 @@ import { useAuthStore } from './store/useAuthStore'
 import HomePage from './pages/HomePage'
 import { Loader } from 'lucide-react'
 import { useThemeStore } from './store/useThemeStore'
-import ChatPage from './pages/ChatPage'
+// import ChatPage from './pages/ChatPage'
 import SearchPage from './pages/SearchPage'
 import TrackPage from './pages/TrackPage'
 
@@ -42,7 +42,7 @@ function App() {
         <Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to='/' />} />
         <Route path='/settings' element={<SettingPage />} />
         <Route path='/Profile' element={authUser ? <ProfilePage /> : <Navigate to='/login' />} />
-        <Route path='/chat' element={authUser ? <ChatPage /> : <Navigate to='/login' />} />
+        {/* <Route path='/chat' element={authUser ? <ChatPage /> : <Navigate to='/login' />} /> */}
         <Route path='/search' element={authUser ? <SearchPage /> : <Navigate to='/login' />} />
         <Route path='/track' element={authUser ? <TrackPage /> : <Navigate to='/login' />} />
         <Route path='*' element={<Navigate to='/' />} />

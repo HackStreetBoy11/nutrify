@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import LeftSide from "./SearchPageSide.jsx/LeftSide";
 import RightSide from "./SearchPageSide.jsx/RightSide";
+import toast from "react-hot-toast";
 
 export default function SearchPage() {
     const [foodItems, setFoodItems] = useState([]);
@@ -31,8 +32,8 @@ export default function SearchPage() {
     }, []);
 
     function searchFood(e) {
-        const query = e.target.value;
-        if (query.length > 2) {
+        const query = e.target.value; 
+        if (query.length > 2) { // Start searching after 3 characters
             fetch(
                 `https://api.nal.usda.gov/fdc/v1/foods/search?query=${query}&api_key=eaXR8kjXm6roxkfIL5XCSLgtbvc1tdEa4SH9NNWT`
             )
@@ -82,7 +83,7 @@ export default function SearchPage() {
         try {
             const res = await fetch("http://localhost:5000/api/food/track", {
                 method: "POST",
-                credentials: "include", 
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${getCookie("jwt")}`,
@@ -91,7 +92,7 @@ export default function SearchPage() {
             });
             const data = await res.json();
             console.log("Saved:", data);
-            alert("Food added to your track!");
+            toast.success("Food added to your track!");
         } catch (err) {
             console.error(err);
             alert("Failed to save food.");

@@ -46,6 +46,8 @@ Fat: ${totals.fats}g
 };
 
 export const startScheduler = () => {
+    cron.schedule('32 22 * * *', sendDailyNutrientReports, { timezone: 'Asia/Kolkata' });
+
     cron.schedule('0 8,13,20 * * *', sendDailyNutrientReports, { timezone: 'Asia/Kolkata' });
     console.log("⏳ Scheduler is active...");
 };
