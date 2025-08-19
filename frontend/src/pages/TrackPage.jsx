@@ -118,7 +118,7 @@ export default function TrackPage() {
                     onClick={() => setShowSettings(true)}
                     className="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                 >
-                    ⚙️ Set Goals
+                    <h1>⚙️ Set Goals</h1>
                 </button>
 
             </motion.h1>

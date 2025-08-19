@@ -6,7 +6,7 @@ import path from 'path';
 
 import authRoutes from './routes/auth.route.js';
 // import messageRoutes from './routes/message.route.js';
-import foodRoutes from './routes/food.route.js';
+// import foodRoutes from './routes/food.route.js';
 import connectDb from './lib/db.js';
 import { app, server } from './lib/socket.js';
 import { sendDailyNutrientReports, startScheduler } from './scheduler.js';
@@ -36,7 +36,7 @@ app.use(cookieParser());
 // ✅ API Routes
 app.use("/api/auth", authRoutes);
 // app.use("/api/messages", messageRoutes);
-app.use("/api/food", foodRoutes);
+// app.use("/api/food", foodRoutes);
 
 // ✅ Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
