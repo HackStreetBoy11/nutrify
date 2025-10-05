@@ -25,9 +25,10 @@ try {
 
 // ✅ CORS
 app.use(cors({
-    origin: ["http://localhost:5173"], // your frontend origin
+    origin: ["http://localhost:5173", process.env.FRONTEND_URL],
     credentials: true
 }));
+
 
 // ✅ JSON + cookie parser
 app.use(express.json({ limit: "10mb" }));
@@ -40,10 +41,12 @@ app.use("/api/food", foodRoutes);
 
 // ✅ Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, "../frontend","/dist", "index.html"));
+    app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
     });
+
 }
 
 // ✅ Start server
