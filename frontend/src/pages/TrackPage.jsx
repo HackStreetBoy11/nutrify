@@ -5,7 +5,7 @@ const API_BASE = import.meta.env.MODE === "development"
     : "/api";
 
 
-import TargetSettings from "../components/TargetSettings"; // import modal
+// import TargetSettings from "../components/TargetSettings"; // import modal
 
 import {
     BarChart,
@@ -117,7 +117,8 @@ export default function TrackPage() {
                 className="text-3xl font-bold mb-6 text-center"
             >
                 <h1 className="text-3xl font-bold text-center">Nutrition Dashboard</h1>
-                <button
+            </motion.h1>
+            {/* <button
                     onClick={() => setShowSettings(true)}
                     className="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                 >
@@ -132,7 +133,7 @@ export default function TrackPage() {
                     onSave={setGoals}
                     onClose={() => setShowSettings(false)}
                 />
-            )}
+            )} */}
 
             {/* Date Picker */}
             <div className="flex justify-center mb-6">
