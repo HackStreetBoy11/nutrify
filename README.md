@@ -68,17 +68,16 @@ The app combines a sleek frontend with a powerful backend for seamless tracking 
 
 🖼️ Project Preview
 
-<div align="center">
+<<div align="center">
   <img src="https://github.com/HackStreetBoy11/nutrify/blob/main/frontend/public/images/img1.png?raw=true" alt="Screenshot 1" width="80%" />
   <br/><br/>
-  <img src="/images/img2.png" alt="Screenshot 2" width="80%" />
+  <img src="https://github.com/HackStreetBoy11/nutrify/blob/main/frontend/public/images/img2.png?raw=true" alt="Screenshot 2" width="80%" />
   <br/><br/>
-  <img src="/images/img3.png" alt="Screenshot 3" width="80%" />
+  <img src="https://github.com/HackStreetBoy11/nutrify/blob/main/frontend/public/images/im3.png?raw=true" alt="Screenshot 3" width="80%" />
   <br/><br/>
-  <img src="/images/img4.png" alt="Screenshot 4" width="80%" />
-  <br/><br/>
-  <img src="/images/img5.png" alt="Screenshot 5" width="80%" />
+  <img src="https://github.com/HackStreetBoy11/nutrify/blob/main/frontend/public/images/img4.png?raw=true" alt="Screenshot 4" width="80%" />
 </div>
+
 
 🧩 Key Features
 
