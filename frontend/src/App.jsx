@@ -38,13 +38,14 @@ function App() {
 
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to='/' />} />
-        <Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to='/' />} />
+        <Route path='/signup' element={authUser ? <SignUpPage /> : <Navigate to='/' />} />
+        <Route path='/login' element={authUser ? <LoginPage /> : <Navigate to='/' />} />
         <Route path='/settings' element={<SettingPage />} />
-        <Route path='/Profile' element={authUser ? <ProfilePage /> : <Navigate to='/login' />} />
-        <Route path='/chat' element={authUser ? <ChatPage /> : <Navigate to='/login' />} />
-        <Route path='/search' element={authUser ? <SearchPage /> : <Navigate to='/login' />} />
-        <Route path='/track' element={authUser ? <TrackPage /> : <Navigate to='/login' />} />
+        <Route path='/Profile' element={!authUser ? <ProfilePage /> : <Navigate to='/login' />} />
+        <Route path='/chat' element={!authUser ? <ChatPage /> : <Navigate to='/login' />} />
+        {/* <Route path='/search' element={authUser ? <SearchPage /> : <Navigate to='/login' />} /> */}
+        <Route path='/search' element={<SearchPage />}></Route>
+        <Route path='/track' element={!authUser ? <TrackPage /> : <Navigate to='/login' />} />
         <Route path='*' element={<Navigate to='/' />} />
 
 
